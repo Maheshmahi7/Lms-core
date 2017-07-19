@@ -82,8 +82,8 @@ public class LeaveController {
 
 	}
 	@GetMapping("/user/{userId}/{leaveType}")
-	public List<LeaveDTO> getLeaveByUserId(@PathVariable("userId") String userId,@PathVariable("leaveType") Integer leaveType) throws Exception {
-		List<LeaveDTO> leaveByUserId= null;
+	public LeaveDTO getLeaveByUserId(@PathVariable("userId") String userId,@PathVariable("leaveType") Integer leaveType) throws Exception {
+		LeaveDTO leaveByUserId= null;
 		LeaveDTO leaveDTO=new LeaveDTO();
 		leaveDTO.setUserId(userId);
 		leaveDTO.setLeaveId(leaveType);

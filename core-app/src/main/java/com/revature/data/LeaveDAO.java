@@ -13,7 +13,7 @@ public interface LeaveDAO {
 
 	public List<LeaveDTO> getLeaveByLeaveType(Leave leave) throws DataServiceException;
 	
-	public List<LeaveDTO> getLeaveByUserId(Leave leave) throws DataServiceException;
+	public LeaveDTO getLeaveByUserId(Leave leave) throws DataServiceException;
 
 
 

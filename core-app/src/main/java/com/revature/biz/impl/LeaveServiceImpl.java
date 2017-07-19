@@ -70,8 +70,8 @@ public class LeaveServiceImpl implements LeaveService{
 
 	}
 
-	public List<LeaveDTO> getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException {
-		List<LeaveDTO> leaveByUserId= null;
+	public LeaveDTO getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException {
+		LeaveDTO leaveByUserId= null;
 		Leave leave=new Leave();
 		User user=new User();
 		LeaveType leaveType=new LeaveType();
