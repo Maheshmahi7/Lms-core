@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,9 @@ import com.revature.model.dto.StatusDTO;
 
 
 
-
+@CrossOrigin
 @RestController
-@RequestMapping("/Status")
+@RequestMapping("/status")
 public class StatusController {
 	
 	private static Logger logger=Logger.getLogger(StatusController.class);
@@ -64,7 +65,7 @@ public class StatusController {
 		return statusById;
 
 	}
-	@GetMapping("/Name/{statusName}")
+	@GetMapping("/name/{statusName}")
 	public List<StatusDTO> getStatusByName(@PathVariable("statusName") String statusName) throws Exception {
 		List<StatusDTO> statusByName= null;
 		StatusDTO statusDTO=new StatusDTO();

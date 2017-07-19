@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,9 @@ import com.revature.controller.exception.InternalException;
 import com.revature.controller.exception.InvalidInputException;
 import com.revature.model.dto.RoleDTO;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/Role")
+@RequestMapping("/role")
 public class RoleController {
 	
 	private static Logger logger=Logger.getLogger(RoleController.class);
@@ -60,7 +62,7 @@ public class RoleController {
 		return roleById;
 
 	}
-	@GetMapping("/Name/{roleName}")
+	@GetMapping("/name/{roleName}")
 	public List<RoleDTO> getRoleByName(@PathVariable("roleName") String roleName) throws Exception {
 		List<RoleDTO> roleByName= null;
 		RoleDTO roleDTO=new RoleDTO();

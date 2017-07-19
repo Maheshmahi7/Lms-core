@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +18,9 @@ import com.revature.controller.exception.InternalException;
 import com.revature.controller.exception.InvalidInputException;
 import com.revature.model.dto.UserDTO;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 	
 	private static Logger logger=Logger.getLogger(UserController.class);
@@ -62,7 +64,7 @@ public class UserController {
 		return userById;
 
 	}
-	@GetMapping("/Name/{userName}")
+	@GetMapping("/name/{userName}")
 	public List<UserDTO> getUserByName(@PathVariable("userName") String userName) throws Exception {
 		List<UserDTO> userByName= null;
 		UserDTO userDTO=new UserDTO();
@@ -81,7 +83,7 @@ public class UserController {
 		return userByName;
 
 	}
-	@GetMapping("/Role/{roleId}")
+	@GetMapping("/role/{roleId}")
 	public List<UserDTO> getUserByRole(@PathVariable("roleId") Integer roleId) throws Exception {
 		List<UserDTO> userByName= null;
 		UserDTO userDTO=new UserDTO();
@@ -100,7 +102,7 @@ public class UserController {
 		return userByName;
 
 	}
-	@GetMapping("/Department/{departmentId}")
+	@GetMapping("/department/{departmentId}")
 	public List<UserDTO> getUserByDepartment(@PathVariable("departmentId") Integer departmentId) throws Exception {
 		List<UserDTO> userByName= null;
 		UserDTO userDTO=new UserDTO();

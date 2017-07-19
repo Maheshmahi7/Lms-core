@@ -1,5 +1,6 @@
 package com.revature.model.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,6 +19,7 @@ public class LeaveDTO {
 	private Date fromDate;
 	private Date toDate;
 	private Integer status;
-
+	private BigDecimal sum;
+	private Integer noOfDays;
 
 }

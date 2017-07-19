@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,9 @@ import com.revature.controller.exception.InternalException;
 import com.revature.controller.exception.InvalidInputException;
 import com.revature.model.dto.LeaveTypeDTO;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/LeaveType")
+@RequestMapping("/leaveType")
 public class LeaveTypeController {
 	private static Logger logger=Logger.getLogger(LeaveTypeController.class);
 
@@ -59,7 +61,7 @@ public class LeaveTypeController {
 		return leaveTypeById;
 
 	}
-	@GetMapping("/Name/{leaveTypeName}")
+	@GetMapping("/name/{leaveTypeName}")
 	public List<LeaveTypeDTO> getLeaveTypeByName(@PathVariable("leaveTypeName") String leaveTypeName) throws Exception {
 		List<LeaveTypeDTO> leaveTypeByName= null;
 		LeaveTypeDTO leaveTypeDTO=new LeaveTypeDTO();

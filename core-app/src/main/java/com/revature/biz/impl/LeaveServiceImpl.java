@@ -70,5 +70,26 @@ public class LeaveServiceImpl implements LeaveService{
 
 	}
 
+	public List<LeaveDTO> getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException {
+		List<LeaveDTO> leaveByUserId= null;
+		Leave leave=new Leave();
+		User user=new User();
+		LeaveType leaveType=new LeaveType();
+		user.setRegisterNumber(leaveDTO.getUserId());
+		leaveType.setId(leaveDTO.getLeaveId());
+		leave.setUser(user);
+		leave.setLeaveType(leaveType);
+		try {
+			logger.info("Getting the Leave data...");
+			leaveByUserId = leaveDAO.getLeaveByUserId(leave);
+			logger.info("Leave data retrieval success.");
+		} catch (DataServiceException e) {
+			logger.error(e.getMessage(), e);
+			throw new BusinessServiceException(e.getMessage(), e);
+		}
+		return leaveByUserId;
+
+	}
+
 
 }

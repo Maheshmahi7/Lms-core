@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,9 @@ import com.revature.controller.exception.InternalException;
 import com.revature.controller.exception.InvalidInputException;
 import com.revature.model.dto.LeaveDTO;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/Leave")
+@RequestMapping("/leave")
 public class LeaveController {
 
 	private static Logger logger=Logger.getLogger(LeaveController.class);
@@ -41,7 +43,7 @@ public class LeaveController {
 		return leave;
 
 	}
-	@GetMapping("/User/{userId}")
+	@GetMapping("/user/{userId}")
 	public List<LeaveDTO> getLeaveByUser(@PathVariable("userId") String userId) throws Exception {
 		List<LeaveDTO> leaveByUserId= null;
 		LeaveDTO leaveDTO=new LeaveDTO();
@@ -60,7 +62,7 @@ public class LeaveController {
 		return leaveByUserId;
 
 	}
-	@GetMapping("/LeaveType/{leaveType}")
+	@GetMapping("/leaveType/{leaveType}")
 	public List<LeaveDTO> getLeaveByLeaveType(@PathVariable("leaveType") Integer leaveType) throws Exception {
 		List<LeaveDTO> leaveByLeaveType= null;
 		LeaveDTO leaveDTO=new LeaveDTO();
@@ -79,6 +81,27 @@ public class LeaveController {
 		return leaveByLeaveType;
 
 	}
+	@GetMapping("/user/{userId}/{leaveType}")
+	public List<LeaveDTO> getLeaveByUserId(@PathVariable("userId") String userId,@PathVariable("leaveType") Integer leaveType) throws Exception {
+		List<LeaveDTO> leaveByUserId= null;
+		LeaveDTO leaveDTO=new LeaveDTO();
+		leaveDTO.setUserId(userId);
+		leaveDTO.setLeaveId(leaveType);
+		try {
+			logger.info("Getting the Leave data...");
+			leaveByUserId = leaveService.getLeaveByUserId(leaveDTO);
+			logger.info("Leave data retrieval success.");
+		} catch (BusinessServiceException e) {
+			logger.error(e.getMessage(), e);
+			throw new InvalidInputException(e.getMessage(), e);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new InternalException("System has some issue...", e);
+		}
+		return leaveByUserId;
+
+	}
+
 
 
 }

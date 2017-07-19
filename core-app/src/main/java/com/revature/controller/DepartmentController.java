@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,9 @@ import com.revature.controller.exception.InternalException;
 import com.revature.controller.exception.InvalidInputException;
 import com.revature.model.dto.DepartmentDTO;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/Department")
+@RequestMapping("/department")
 public class DepartmentController {
 	private static Logger logger=Logger.getLogger(DepartmentController.class);
 
@@ -59,7 +61,7 @@ public class DepartmentController {
 		return departmentById;
 
 	}
-	@GetMapping("/Name/{departmentName}")
+	@GetMapping("/name/{departmentName}")
 	public List<DepartmentDTO> getDepartmentByName(@PathVariable("departmentName") String departmentName) throws Exception {
 		List<DepartmentDTO> departmentByName= null;
 		DepartmentDTO departmentDTO=new DepartmentDTO();

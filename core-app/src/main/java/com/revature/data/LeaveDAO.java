@@ -12,6 +12,8 @@ public interface LeaveDAO {
 	public List<LeaveDTO> getLeaveByUser(Leave leave) throws DataServiceException;
 
 	public List<LeaveDTO> getLeaveByLeaveType(Leave leave) throws DataServiceException;
+	
+	public List<LeaveDTO> getLeaveByUserId(Leave leave) throws DataServiceException;
 
 
 

@@ -68,6 +68,19 @@ public class LeaveDAOImpl implements LeaveDAO{
 		}
 		return leaveByLeaveType;
 	}
+	
+	public List<LeaveDTO> getLeaveByUserId(Leave leave) throws DataServiceException {
+		List<LeaveDTO> leaveByUserId = null;
+		try {
+			StringBuilder sb = new StringBuilder("SELECT SUM(NO_OF_DAYS_REQUIRED) sum FROM LEAVES JOIN LEAVE_TYPE ON LEAVE_TYPE.`ID`=LEAVES.`LEAVE_ID` WHERE USER_ID='"+leave.getUser().getRegisterNumber()+"' AND LEAVE_ID="+leave.getLeaveType().getId());
+			leaveByUserId = dataRetriver.retrieveBySQLAsJSON(sb.toString(),LeaveDTO.class);
+			logger.info("Leave by id data retrieval success..");
+		} catch (DataAccessException e) {
+			logger.error(e.getMessage(), e);
+			throw new DataServiceException(DataUtils.getPropertyMessage("data_retrieval_fail"), e);
+		}
+		return leaveByUserId;
+	}
 
 
 }
