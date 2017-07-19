@@ -70,8 +70,9 @@ public class LeaveServiceImpl implements LeaveService{
 
 	}
 
-	public LeaveDTO getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException {
+	public <E> LeaveDTO getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException {
 		LeaveDTO leaveByUserId= null;
+		try {
 		Leave leave=new Leave();
 		User user=new User();
 		LeaveType leaveType=new LeaveType();
@@ -79,7 +80,6 @@ public class LeaveServiceImpl implements LeaveService{
 		leaveType.setId(leaveDTO.getLeaveId());
 		leave.setUser(user);
 		leave.setLeaveType(leaveType);
-		try {
 			logger.info("Getting the Leave data...");
 			leaveByUserId = leaveDAO.getLeaveByUserId(leave);
 			logger.info("Leave data retrieval success.");

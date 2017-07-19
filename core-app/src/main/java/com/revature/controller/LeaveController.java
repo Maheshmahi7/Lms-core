@@ -82,7 +82,7 @@ public class LeaveController {
 
 	}
 	@GetMapping("/user/{userId}/{leaveType}")
-	public LeaveDTO getLeaveByUserId(@PathVariable("userId") String userId,@PathVariable("leaveType") Integer leaveType) throws Exception {
+	public <E> LeaveDTO getLeaveByUserId(@PathVariable("userId") String userId,@PathVariable("leaveType") Integer leaveType) throws Exception {
 		LeaveDTO leaveByUserId= null;
 		LeaveDTO leaveDTO=new LeaveDTO();
 		leaveDTO.setUserId(userId);

@@ -12,6 +12,6 @@ public interface LeaveService {
 
 	public List<LeaveDTO> getLeaveByLeaveType(LeaveDTO leaveDTO) throws BusinessServiceException;
 
-	public LeaveDTO getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException;
+	public <E> LeaveDTO getLeaveByUserId(LeaveDTO leaveDTO) throws BusinessServiceException;
 
 }
